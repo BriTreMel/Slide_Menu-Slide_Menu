@@ -14,7 +14,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,8 +112,7 @@ public class menu2_Fragment extends Fragment implements OnItemSelectedListener {
         String emailSubject = "New Order";
         String emailMessage = "Fuel Order \n" + "Fuel Type: " + this.fuelType + "\n" +
                 "Fuel Order Type: " + this.orderType + "\n" +
-                "Order Amount: " + this.orderAmountInput + "\n" +
-                "Order From Bridget";
+                "Order Amount: " + this.orderAmountInput + "\n";
 
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
@@ -147,7 +145,7 @@ public class menu2_Fragment extends Fragment implements OnItemSelectedListener {
             System.out.println(fuelType);
 
             // Showing selected spinner item
-            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        //    Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 
         } else if (spinner.getId() == R.id.spinnerOrderType) {
 
@@ -158,7 +156,7 @@ public class menu2_Fragment extends Fragment implements OnItemSelectedListener {
             System.out.println(orderType);
 
             // Showing selected spinner item
-            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+          //  Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 
         } else if (spinner.getId() == R.id.spinnerOrderAmount) {
 
@@ -169,7 +167,7 @@ public class menu2_Fragment extends Fragment implements OnItemSelectedListener {
             System.out.println(orderAmountInput);
 
             // Showing selected spinner item
-            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+            //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 
 
         }

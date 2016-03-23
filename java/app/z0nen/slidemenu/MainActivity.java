@@ -8,10 +8,12 @@ import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gcm.GCMRegistrar;
 
+import com.google.android.gcm.GCMRegistrar;
 
 import static app.z0nen.slidemenu.CommonUtilities.DISPLAY_MESSAGE_ACTION;
 import static app.z0nen.slidemenu.CommonUtilities.EXTRA_MESSAGE;
@@ -20,6 +22,9 @@ import static app.z0nen.slidemenu.CommonUtilities.SENDER_ID;
 public class MainActivity extends Activity {
     // label to display gcm messages
     TextView lblMessage;
+
+    //button to return to gauge
+    Button btnExit;
 
     // Asyntask
     AsyncTask<Void, Void, Void> mRegisterTask;
@@ -37,6 +42,8 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btnExit = (Button) findViewById(R.id.btnExit);
 
         cd = new ConnectionDetector(getApplicationContext());
 
@@ -128,6 +135,8 @@ public class MainActivity extends Activity {
 
             // Releasing wake lock
             WakeLocker.release();
+
+
         }
     };
 
@@ -143,6 +152,15 @@ public class MainActivity extends Activity {
             Log.e("UnRegister Receiver Err", "> " + e.getMessage());
         }
         super.onDestroy();
+    }
+
+
+    public void btnExit(View view){
+
+        Intent exit = new Intent(MainActivity.this,app.z0nen.menu.log_in_screen.class);
+        startActivity(exit);
+        MainActivity.this.startActivity(exit);
+        MainActivity.this.finish();
     }
 
 }

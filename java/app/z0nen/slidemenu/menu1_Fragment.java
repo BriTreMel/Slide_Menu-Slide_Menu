@@ -1,6 +1,7 @@
 package app.z0nen.slidemenu;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -17,7 +18,11 @@ import io.sule.gaugelibrary.GaugeView;
 public class menu1_Fragment extends Fragment {
     private View rootview;
     String tankLevelFromLogIn;
+    String readingTimestamp;    //takes value from database
+
     private TextView gaugeValue;
+    private TextView timestamp; //shows reading from database on app
+
     private GaugeView mGaugeView;
     //private final Random RAND = new Random();
 
@@ -27,18 +32,26 @@ public class menu1_Fragment extends Fragment {
         rootview = inflater.inflate(R.layout.menu1_layout, container, false);
 
 
-
-        String tankUpdate = null;
+       // String tankUpdate = null;
+        //String readingTime =null;
         mGaugeView = (GaugeView) rootview.findViewById(R.id.gauge_view);
                 //getView().findViewById(R.id.gauge_view);
         mTimer.start();
-        Bundle bundle = getActivity().getIntent().getExtras();
+
+        Intent intent = getActivity().getIntent();
+        Bundle extras = intent.getExtras();
 
         gaugeValue = (TextView)rootview.findViewById(R.id.textViewGaugeLevel);
+        timestamp = (TextView)rootview.findViewById(R.id.textViewUpdateDateTime);
 
-        tankLevelFromLogIn = bundle.getString(tankUpdate);
+        tankLevelFromLogIn = extras.getString("tankUpdate");
+        readingTimestamp = extras.getString("readingTime");
+        float number = Float.parseFloat(tankLevelFromLogIn);
+
+        tankLevelFromLogIn = String.format("%.1f",number);
 
         gaugeValue.setText(tankLevelFromLogIn);
+        timestamp.setText(readingTimestamp);
 
         return rootview;
     }
